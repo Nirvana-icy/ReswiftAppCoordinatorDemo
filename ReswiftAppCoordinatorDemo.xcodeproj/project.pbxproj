@@ -14,8 +14,6 @@
 		DF0E3FBA1E237C9F00D00586 /* StringUtilSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0E3FB91E237C9F00D00586 /* StringUtilSpec.swift */; };
 		DF0E3FBB1E237E5900D00586 /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0E3FB61E2378AF00D00586 /* StringUtil.swift */; };
 		DF23DFCF1E220EDB0032641D /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DF23DFCE1E220EDB0032641D /* Alamofire.framework */; };
-		DF23DFD61E220F250032641D /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DF23DFD41E220F250032641D /* Nimble.framework */; };
-		DF23DFD71E220F250032641D /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DF23DFD51E220F250032641D /* Quick.framework */; };
 		DF23DFD91E2211A70032641D /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF23DFD81E2211A70032641D /* SearchResultViewController.swift */; };
 		DF23DFDB1E2218990032641D /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF23DFDA1E2218990032641D /* SearchResultView.swift */; };
 		DF23DFDD1E2219B10032641D /* SearchResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF23DFDC1E2219B10032641D /* SearchResultView.xib */; };
@@ -53,6 +51,8 @@
 		DFC26C221E1F404700148AB5 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC26C211E1F404700148AB5 /* SearchView.swift */; };
 		DFC26C271E1F6F8A00148AB5 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC26C261E1F6F8A00148AB5 /* LocationTracker.swift */; };
 		DFF15E401E212BDC0072DACF /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC26C261E1F6F8A00148AB5 /* LocationTracker.swift */; };
+		E0E832B21EF11B15003FD519 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF23DFD41E220F250032641D /* Nimble.framework */; };
+		E0E832B31EF11B15003FD519 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF23DFD51E220F250032641D /* Quick.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +72,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				DF23DFD61E220F250032641D /* Nimble.framework in CopyFiles */,
-				DF23DFD71E220F250032641D /* Quick.framework in CopyFiles */,
 				DF23DFCF1E220EDB0032641D /* Alamofire.framework in CopyFiles */,
 				DF74B9B41E1C8F130028246C /* ReSwift.framework in CopyFiles */,
 			);
@@ -135,6 +133,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0E832B21EF11B15003FD519 /* Nimble.framework in Frameworks */,
+				E0E832B31EF11B15003FD519 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +307,7 @@
 				DF3072661E1BA625005AA130 /* Frameworks */,
 				DF3072671E1BA625005AA130 /* Resources */,
 				DF74B9B31E1C8EF30028246C /* CopyFiles */,
+				E0E832B11EF11A2E003FD519 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -398,6 +399,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E0E832B11EF11A2E003FD519 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Quick.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Nimble.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReSwift.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/Carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DF3072651E1BA625005AA130 /* Sources */ = {
@@ -600,6 +621,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ReswiftAppCoordinatorDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xianlinbox.ReswiftAppCoordinatorDemoTests;
@@ -614,6 +639,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ReswiftAppCoordinatorDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xianlinbox.ReswiftAppCoordinatorDemoTests;
